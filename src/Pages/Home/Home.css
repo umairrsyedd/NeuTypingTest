@@ -1,0 +1,15 @@
+.Home {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.Home-Left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.Home-Right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
