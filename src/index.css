@@ -1,11 +1,14 @@
 :root {
   --dark-color: #26243d;
   --light-color: #f5f0f0;
+  color: var(--dark-color);
+  font-size: 16px;
 }
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: var(--light-color);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;

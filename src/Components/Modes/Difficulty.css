@@ -1,0 +1,24 @@
+.Modes__Difficulty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Modes__Difficulty__Box {
+  width: 40%;
+  padding: 1rem 2rem 1rem 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  margin: 0.1rem;
+}
+.Difficulty__Easy {
+  box-shadow: 4px 4px 4px rgba(38, 36, 61, 0.25),
+    -4px -4px 4px rgba(255, 255, 255, 0.75);
+}
+.Difficulty__Medium {
+  box-shadow: inset 4px 4px 4px rgba(38, 36, 61, 0.25),
+    inset -4px -4px 4px rgba(255, 255, 255, 0.75);
+}
+.Difficulty__Hard {
+  box-shadow: inset 4px 4px 4px rgba(38, 36, 61, 0.25),
+    inset -4px -4px 4px rgba(255, 255, 255, 0.75);
+}

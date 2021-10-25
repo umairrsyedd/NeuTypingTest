@@ -1,15 +1,18 @@
 .Home {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1.5fr 5fr 1.5fr;
+  height: 100vh;
+  width: 100vw;
 }
 
-.Home-Left {
+.Home-Modes {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.Home-Right {
+.Home-Main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 }

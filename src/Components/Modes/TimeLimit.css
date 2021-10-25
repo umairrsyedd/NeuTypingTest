@@ -1,0 +1,28 @@
+.Modes__Time {
+  margin: 2rem;
+}
+
+.Modes__Time__TimeHeading {
+  font-size: 1.5rem;
+  padding: 1rem;
+  box-shadow: 4px 4px 4px rgba(38, 36, 61, 0.25),
+    -4px -4px 4px rgba(255, 255, 255, 0.75);
+  text-align: center;
+  border-radius: 1rem;
+  margin-bottom: 5%;
+}
+.Modes__Time__TimeBoxes {
+  display: flex;
+  justify-content: center;
+}
+.TimeBoxes__Box {
+  padding: 1rem;
+  margin: 0.5rem;
+  box-shadow: inset 4px 4px 4px rgba(38, 36, 61, 0.25),
+    inset -4px -4px 4px rgba(255, 255, 255, 0.75);
+  border-radius: 0.5rem;
+}
+.TimeBoxes__1min {
+  box-shadow: 4px 4px 4px rgba(38, 36, 61, 0.25),
+    -4px -4px 4px rgba(255, 255, 255, 0.75);
+}
