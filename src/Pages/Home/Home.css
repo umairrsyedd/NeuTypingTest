@@ -1,14 +1,15 @@
 .Home {
   display: grid;
   grid-template-columns: 1.5fr 5fr 1.5fr;
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
 }
 
 .Home-Modes {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 .Home-Main {
   display: flex;

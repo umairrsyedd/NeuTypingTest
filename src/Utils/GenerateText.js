@@ -5,5 +5,5 @@ export default function GenerateText(Text) {
         const randomIndex = Math.floor(Math.random() * Text.length);
         randomWords.push(Text[randomIndex]);
     }
-    return randomWords.join(' ');
+    return randomWords
 }

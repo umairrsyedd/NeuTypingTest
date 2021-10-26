@@ -1,6 +1,41 @@
 .TextBox {
-  height: 30%;
-  width: 80%;
+  font-size: 1.7rem;
+  border-radius: 1rem;
+  width: 50vw;
+  padding: 2rem;
+  height: 20vh;
+  word-wrap: break-word;
+}
+.TextBox__Wrapper {
+  width: 100%;
+  height: 100%;
+}
+.TextBox:focus {
+  outline: none;
   box-shadow: 4px 4px 2px rgba(38, 36, 61, 0.25),
     -4px -4px 2px rgba(255, 255, 255, 0.75);
+}
+.Word {
+  white-space: nowrap;
+}
+.Letter {
+  color: #26243d;
+  opacity: 0.6;
+}
+.Letter--Correct {
+  color: #26243d;
+  opacity: 1;
+}
+.Letter--Wrong {
+  color: red;
+  opacity: 1;
+}
+.Letter--Active {
+  animation: blink 0.5s infinite;
+}
+@keyframes blink {
+  100% {
+    background-color: #26243d;
+    color: white;
+  }
 }
