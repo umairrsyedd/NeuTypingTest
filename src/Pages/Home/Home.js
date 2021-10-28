@@ -7,36 +7,22 @@ import Keyboard from "Components/Keyboard"
 import Timer from 'Components/Timer'
 function Home() {
     const [mode, setMode] = useState({ mode: "Test", time: 1, difficulty: "Easy" })
-    const [timer, setTimer] = useState(0)
+    const [timeLeft, setTimeLeft] = useState(mode.time)
     const [key, setKey] = useState("")
     const [analytics, setAnalytics] = useState({ Speed: 0, Accuracy: 0, WPM: 0, Errors: 0 })
 
-    const handleMode = (mode) => {
-        setMode(mode)
-    }
-    const handleAnalytics = (analytics) => {
-        setAnalytics(analytics)
-        console.log(analytics)
-    }
-    const handleKey = (key) => {
-        console.log(key)
-        setKey(key)
-    }
-    const handleTimer = (timer) => {
-        setTimer(timer)
-    }
     return (
         <div className="Home">
             <div className="Home-Modes">
-                <Modes handleMode={handleMode} />
+                <Modes mode={mode} setMode={setMode} />
             </div>
             <div className="Home-Main">
                 <Analytics analytics={analytics} />
-                <TextBox mode={mode} handleAnalytics={handleAnalytics} handleKey={handleKey} handleTimer={handleTimer} />
-                <Keyboard key={key} />
+                <TextBox mode={mode} setAnalytics={setAnalytics} setKey={setKey} setTimeLeft={setTimeLeft} />
+                <Keyboard keyPressed={key} />
             </div>
             <div className="Home-Timer">
-                <Timer timer={timer} />
+                <Timer timeLeft={timeLeft} />
             </div>
         </div>
     )
