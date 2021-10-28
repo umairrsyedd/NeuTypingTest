@@ -1,28 +1,32 @@
 .Modes__Time {
+  height: 100%;
   margin: 2rem;
 }
 
-.Modes__Time__TimeHeading {
-  font-size: 1.5rem;
-  padding: 1rem;
-  box-shadow: 4px 4px 4px rgba(38, 36, 61, 0.25),
-    -4px -4px 4px rgba(255, 255, 255, 0.75);
-  text-align: center;
-  border-radius: 1rem;
-  margin-bottom: 5%;
-}
 .Modes__Time__TimeBoxes {
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  min-height: 40%;
 }
 .TimeBoxes__Box {
   padding: 1rem;
   margin: 0.5rem;
+  border-radius: 0.5rem;
+  background: none;
+  color: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  height: 60px;
+}
+.TimeBoxes--InActive {
   box-shadow: inset 4px 4px 4px rgba(38, 36, 61, 0.25),
     inset -4px -4px 4px rgba(255, 255, 255, 0.75);
-  border-radius: 0.5rem;
 }
-.TimeBoxes__1min {
+.TimeBoxes--Active {
   box-shadow: 4px 4px 4px rgba(38, 36, 61, 0.25),
     -4px -4px 4px rgba(255, 255, 255, 0.75);
 }
