@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function Errors() {
+export default function Errors({ errors }) {
     return (
         <div className="Analytics__Boxes ">
             <div className="Analytics__Box">
@@ -8,9 +8,13 @@ export default function Errors() {
                     <span>Errors</span>
                 </div>
                 <div className="Analytics__Box__Content">
-                    24
+                    {errors}
                 </div>
             </div>
         </div>
     )
+}
+//default props
+Errors.defaultProps = {
+    errors: 0
 }

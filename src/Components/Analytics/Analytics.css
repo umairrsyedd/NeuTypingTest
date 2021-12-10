@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   width: 50%;
+  min-height: 12%;
 }
 .Analytics__Boxes {
   box-shadow: 4px 4px 4px rgba(38, 36, 61, 0.25),

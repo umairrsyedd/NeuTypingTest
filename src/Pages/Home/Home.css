@@ -1,8 +1,9 @@
 .Home {
   display: grid;
   grid-template-columns: 1.5fr 5fr 1.5fr;
-  width: 100vw;
+  width: 98vw;
   height: 100vh;
+  margin-left: 2%;
 }
 
 .Home-Modes {
@@ -18,4 +19,6 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  min-width: 100%;
+  min-height: 100%;
 }

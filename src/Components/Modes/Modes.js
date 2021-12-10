@@ -3,7 +3,7 @@ import TimeLimit from './TimeLimit.js'
 import Difficulty from './Difficulty.js'
 import "./Modes.css"
 export default function Modes({ mode, setMode }) {
-    const [modeType, setModeType] = useState("Test")
+    const [modeType, setModeType] = useState(mode.mode)
     function changeTimeLimit(timeLimit) {
         setMode({ ...mode, time: timeLimit })
     }
@@ -12,6 +12,8 @@ export default function Modes({ mode, setMode }) {
     }
     function handleChange(e) {
         setModeType(e)
+        setMode({ ...mode, mode: e })
+
     }
     return (
         <div className="Modes">

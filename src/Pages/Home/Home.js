@@ -7,9 +7,11 @@ import Keyboard from "Components/Keyboard"
 import Timer from 'Components/Timer'
 function Home() {
     const [mode, setMode] = useState({ mode: "Test", time: 1, difficulty: "Easy" })
-    const [timeLeft, setTimeLeft] = useState(mode.time)
-    const [key, setKey] = useState("")
-    const [analytics, setAnalytics] = useState({ Speed: 0, Accuracy: 0, WPM: 0, Errors: 0 })
+    const [analytics, setAnalytics] = useState({ correctCharsTyped: 0, wrongCharsTyped: 0 })
+    const [isActive, setIsActive] = useState(false)
+
+    useEffect(() => {
+    }, [isActive, mode])
 
     return (
         <div className="Home">
@@ -17,14 +19,16 @@ function Home() {
                 <Modes mode={mode} setMode={setMode} />
             </div>
             <div className="Home-Main">
-                <Analytics analytics={analytics} />
-                <TextBox mode={mode} setAnalytics={setAnalytics} setKey={setKey} setTimeLeft={setTimeLeft} />
-                <Keyboard keyPressed={key} />
+                <Analytics modeType={mode} analytics={analytics} />
+                <TextBox mode={mode} setAnalytics={setAnalytics} setIsActive={setIsActive} isActive={isActive} />
+                <Keyboard />
             </div>
             <div className="Home-Timer">
-                <Timer timeLeft={timeLeft} />
+                <Timer mode={mode} totalTime={mode.time} isActive={isActive} setIsActive={setIsActive} />
             </div>
         </div>
     )
 }
+// Analytics - timeUsed={timeUsed}
+// Timer - setTimeUsed={setTimeUsed}
 export default Home
