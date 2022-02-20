@@ -1,20 +1,7 @@
-import React, { useState } from 'react'
+import React from "react";
+import { useSelector } from "react-redux";
 
-export default function Errors({ errors }) {
-    return (
-        <div className="Analytics__Boxes ">
-            <div className="Analytics__Box">
-                <div className="Analytics__Box__Title">
-                    <span>Errors</span>
-                </div>
-                <div className="Analytics__Box__Content">
-                    {errors}
-                </div>
-            </div>
-        </div>
-    )
-}
-//default props
-Errors.defaultProps = {
-    errors: 0
+export default function Errors() {
+  const errors = useSelector((state) => state.analytics.errors);
+  return <div className="Button Button--Active">Errors : {errors}</div>;
 }

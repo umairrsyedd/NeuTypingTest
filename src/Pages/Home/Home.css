@@ -1,24 +1,49 @@
 .Home {
   display: grid;
-  grid-template-columns: 1.5fr 5fr 1.5fr;
-  width: 98vw;
+  grid-template-areas: "Settings Main Timer";
+  grid-template-columns: 1fr 3fr 1fr;
   height: 100vh;
-  margin-left: 2%;
 }
 
-.Home-Modes {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 100%;
-  min-height: 100%;
+.Home--Settings {
+  grid-area: Settings;
 }
-.Home-Main {
+
+.Home--Main {
+  grid-area: Main;
+}
+
+.Home--Timer {
+  grid-area: Timer;
+}
+
+.Home--Main-Container {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  min-width: 100%;
-  min-height: 100%;
+}
+
+/* Reusable Classes */
+.Button {
+  font-size: 1.1rem;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 1rem;
+  background: none;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  outline: inherit;
+  margin: 0.5rem;
+}
+.Button--Active {
+  box-shadow: 4px 4px 4px rgba(38, 36, 61, 0.25),
+    -4px -4px 4px rgba(255, 255, 255, 0.75);
+}
+
+.Button--Inactive {
+  box-shadow: inset 4px 4px 4px rgba(38, 36, 61, 0.25),
+    inset -4px -4px 4px rgba(255, 255, 255, 0.75);
 }
