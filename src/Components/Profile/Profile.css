@@ -1,0 +1,52 @@
+.Home__Profile__Container {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Avatar__Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+}
+
+.Name {
+  font-size: 1.4rem;
+  align-self: flex-start;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+}
+
+.Username {
+  align-self: flex-start;
+  padding-left: 1rem;
+  opacity: 0.5;
+}
+
+.Icons__Container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding : 1rem;
+  width: 100%;
+}
+
+.About {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.DesktopHidden {
+  display: none;
+  
+}

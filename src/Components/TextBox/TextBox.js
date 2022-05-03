@@ -1,63 +1,152 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   incrementLetter,
-  decrementLetter,
+  toggleIsFocused,
+  generateText,
+  markTyped,
+  markCorrect,
+  markIncorrect,
+  setZenMode,
 } from "State/Features/TextboxSlice.js";
 import {
-  incrementError
+  incrementError,
+  incrementErrorPerChar,
 } from "State/Features/AnalyticsSlice.js";
-import { startTimer } from "State/Features/TimerSlice.js";
+import {
+  incrementCharsTyped,
+  incrementCorrectChars,
+} from "State/Features/AnalyticsSlice.js";
+import { startTimer, toggleIsActive } from "State/Features/TimerSlice.js";
 import Words from "./Words.js";
-import AddClasses from "Utils/AddClasses.js";
-import RemoveClasses from "Utils/RemoveClasses.js";
 import "./TextBox.css";
+import { setKeyPressed, setCapsLock } from "State/Features/KeyboardSlice.js";
+import useSound from "use-sound";
+import keySound from "Assets/KeySound.wav";
+import wrongKeySound from "Assets/WrongKeySound.wav";
+import { changeAccuracy } from "State/Features/AnalyticsSlice.js";
+import { resetTimer } from "State/Features/TimerSlice.js";
+import { resetAnalytics } from "State/Features/AnalyticsSlice.js";
+import ResultChart from "Components/ResultChart/ResultChart.js";
+import CapsLock from "Components/CapsLock/CapsLock.js";
+import { useState } from "react";
+import {
+  highlightCorrectKey,
+  highlightIncorrectKey,
+} from "Utils/KeyboardHighlight.js";
+import Result from "Components/ResultChart/Result.js";
 
 export default function TextBox() {
-  const dispatch = useDispatch();
-  const { text, cursor, isTextEnd } = useSelector((state) => state.textbox);
+  const { text, cursor } = useSelector((state) => state.textbox);
   const { word, letter } = cursor;
-  const { isActive, isEnded } = useSelector((state) => state.timer);
+  const { isActive } = useSelector((state) => state.timer);
+  const { isEnded } = useSelector((state) => state.timer);
+  const [playKeySound] = useSound(keySound, { volume: 0.3 });
+  const [playWrongKeySound] = useSound(wrongKeySound, { volume: 0.3 });
+  const isFocused = useSelector((state) => state.textbox.isFocused);
+  const isMuted = useSelector((state) => state.settings.Muted);
+  const isPracticeMode = useSelector((state) => state.settings.IsPracticeMode);
+  const [cursorHidden, setCursorHidden] = useState(false);
+  const hasStarted = useSelector((state) => state.timer.hasStarted);
+  const Difficulty = useSelector((state) => state.settings.Difficulty);
+  const dispatch = useDispatch();
 
-  const handleKeyPress = ({ key }) => {
+  useEffect(() => {
+    dispatch(generateText(Difficulty));
+    dispatch(setKeyPressed(""));
+  }, []);
+
+  const handleKeyPress = (e) => {
+    dispatch(setZenMode(true));
+    setCursorHidden(true);
+    let key = e.key;
     if (isEnded) {
       return;
     }
-    if (!isActive) {
+    if (e.getModifierState("CapsLock")) {
+      dispatch(setCapsLock(true));
+    } else {
+      dispatch(setCapsLock(false));
+    }
+    if (!isActive || !hasStarted) {
       dispatch(startTimer());
     }
-    if (isTextEnd) {
-      return;
+    // if text is ending reset
+    if (text[word].length - 1 === letter) {
+      if (word === text.length - 1) {
+        dispatch(generateText(Difficulty));
+        dispatch(setKeyPressed(""));
+        return;
+      }
     }
     if (key === " ") {
       key = "␣";
     }
-    if (key === "Backspace") {
-      dispatch(decrementLetter());
-
-    }
+    dispatch(setKeyPressed(key));
     if (key === text[word][letter]) {
-      if (word === text.length - 1 && letter === text[word].length - 1) {
-        // set text end
-      }
       dispatch(incrementLetter());
-      AddClasses(cursor, ["Letter--Correct"]);
-
+      dispatch(incrementCharsTyped());
+      dispatch(incrementCorrectChars());
+      dispatch(markTyped({ word, letter }));
+      dispatch(markCorrect({ word, letter }));
+      highlightCorrectKey(key);
+      if (isPracticeMode) {
+        dispatch(changeAccuracy());
+      }
+      if (!isMuted) {
+        playKeySound();
+      }
     } else {
       dispatch(incrementError());
-      AddClasses(cursor, ["Letter--Wrong"]);
+      dispatch(incrementErrorPerChar(text[word][letter]));
+      dispatch(incrementCharsTyped());
+      dispatch(markTyped({ word, letter }));
+      dispatch(markIncorrect({ word, letter }));
+      highlightIncorrectKey(key);
+      if (isPracticeMode) {
+        dispatch(changeAccuracy());
+      }
+      if (!isMuted) {
+        playWrongKeySound();
+      }
     }
   };
 
   return (
-    <div
-      className="Button TextBox"
-      tabIndex="0"
-      onKeyPress={(e) => {
-        handleKeyPress(e);
-      }}
-    >
-      <Words text={text} />
-    </div>
+    <>
+      {!isEnded ? (
+        <>
+          <CapsLock />
+          <div
+            className={`Button TextBox ${cursorHidden ? "CursorHidden" : ""}`}
+            tabIndex="0"
+            onKeyPress={(e) => {
+              handleKeyPress(e);
+            }}
+            onBlur={() => {
+              dispatch(toggleIsActive());
+              dispatch(toggleIsFocused());
+              dispatch(setZenMode(false));
+            }}
+            onFocus={() => {
+              dispatch(toggleIsFocused());
+            }}
+            onMouseLeave={() => {
+              setCursorHidden(false);
+              dispatch(setZenMode(false));
+            }}
+          >
+            <Words text={text} />
+            {!isFocused ? (
+              <div className="Text__Activate">Click To Activate...</div>
+            ) : (
+              <span></span>
+            )}
+          </div>
+        </>
+      ) : (
+        <Result />
+      )}
+    </>
   );
 }

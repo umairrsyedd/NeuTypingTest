@@ -2,4 +2,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  height: 95%;
+}
+
+.Timer__Box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Timer__Time {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.Timer__Time--Ending {
+  animation: blinker 1.5s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }

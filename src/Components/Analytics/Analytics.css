@@ -1,3 +1,16 @@
 .Analytics {
+  align-self: stretch;
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 20%;
+}
+
+.Analytics--Left {
+  display: flex;
+  align-items: center;
+}
+
+.Analytics__Practice {
+justify-content: center;
 }

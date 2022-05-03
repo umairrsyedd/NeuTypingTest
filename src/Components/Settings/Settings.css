@@ -5,22 +5,28 @@
   height: 100%;
 }
 
-.Settings--Modes {
+.Settings__Modes {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.Settings--Time {
+.Settings__Time {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 15%;
 }
 
-.Settings--Difficulty {
+.Settings__Difficulty {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.Settings__Options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,16 +1,17 @@
 import React from "react";
+import Letter from "./Letter";
+
 export default function Words({ text }) {
   return text.map((word, wordindex) => {
     return (
-      <span className="Word" id={`Word_${wordindex}`}>
+      <span className="Word" id={`Word_${wordindex}`} key={`Word_${wordindex}`}>
         {Array.from(word).map((letter, letterindex) => {
           return (
-            <span
-              className="Letter"
-              id={`Word_${wordindex}Letter_${letterindex}`}
-            >
-              {letter}
-            </span>
+            <Letter
+              wordindex={wordindex}
+              letterindex={letterindex}
+              letter={letter}
+            />
           );
         })}
       </span>

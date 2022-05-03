@@ -5,6 +5,8 @@ export const SettingsSlice = createSlice({
   initialState: {
     IsTestMode: true,
     Difficulty: "Easy",
+    Muted: false,
+    DarkUI: false,
   },
   reducers: {
     changeMode: (state, action) => {
@@ -19,9 +21,15 @@ export const SettingsSlice = createSlice({
     changeDifficulty: (state, action) => {
       state.Difficulty = action.payload;
     },
+    toggleMuted: (state) => {
+      state.Muted = !state.Muted;
+    },
+    toggleDarkUI: (state) => {
+      state.DarkUI = !state.DarkUI;
+    },
   },
 });
 
-export const { changeMode, changeDifficulty } =
+export const { changeMode, changeDifficulty, toggleDarkUI, toggleMuted } =
   SettingsSlice.actions;
 export default SettingsSlice.reducer;

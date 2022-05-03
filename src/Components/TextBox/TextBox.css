@@ -1,34 +1,81 @@
 .TextBox {
-  font-size: 1.5rem !important;
+  font-size: 1.8rem !important;
   word-wrap: break-word;
   width: 756px;
+  min-height: 160px;
 }
 
 .TextBox:focus {
-  box-shadow: 4px 4px 2px rgba(38, 36, 61, 0.25),
-    -4px -4px 2px rgba(255, 255, 255, 0.75);
+  box-shadow: 2px 2px 3px var(--boxshadow-1),
+    -2px -2px 3px var(--boxshadow-2);
+}
+
+.Text__Activate{
+  font-size: 1rem;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .Word {
   white-space: nowrap;
 }
 .Letter {
-  color: #26243d;
-  opacity: 0.6;
+  opacity: 0.5;
+}
+
+.Letter--typed {
+  opacity: 0.8;
+}
+
+
+.Letter--Blur {
+  color: transparent;
+  text-shadow: 0 0 5px var(--letter-blur);
+  opacity: 0.5;
+
 }
 .Letter--Correct {
-  color: #26243d;
   opacity: 1;
 }
-.Letter--Wrong {
+.Letter--Incorrect {
   color: red;
+  opacity : 0.6
 }
 .Letter--Active {
+  border-bottom: 3px solid var(--secondary-color);
   animation: blink 0.5s infinite;
 }
 @keyframes blink {
   100% {
-    background-color: #26243d;
-    color: white;
+    background-color: var(--secondary-color); 
+    color: var(--primary-color);
   }
+}
+
+.TestEnd__Container {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 175px;
+}
+
+.TestEnd__Heading {
+  text-align: center;
+}
+
+.TestEnd__Emp {
+  font-size: 1.5rem;
+  font-style: oblique;
+  margin: 0.1rem;
+}
+
+.caps-lock-text {
+  font-size: 0.9rem;
+  color: red;
+  text-align: start;
+  min-height: 1rem;
+}
+
+.CursorHidden{
+  cursor: none !important;
 }
