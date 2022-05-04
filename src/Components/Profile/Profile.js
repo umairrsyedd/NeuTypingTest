@@ -24,7 +24,7 @@ export default function Profile() {
                 className="Avatar"
                 src={Profile__Picture}
                 data-tip="That's Me!"
-                alt="Profile Photo"
+                alt="Syed Umair"
               ></img>
               <span className="Name" data-tip="Syed Muhammed Umair">
                 Syed Umair
