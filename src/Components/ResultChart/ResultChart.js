@@ -1,36 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./Result.css";
-import {
-  BarChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  Bar,
-  Label,
-} from "recharts";
+import { BarChart, XAxis, YAxis, Tooltip, Legend, Bar } from "recharts";
 
 export default function ResultChart() {
-  const data = [
-    {
-      name: "F",
-      errors: 15,
-    },
-    {
-      name: "B",
-      errors: 10,
-    },
-    {
-      name: "C",
-      errors: 5,
-    },
-    {
-      name: "A",
-      errors: 3,
-    },
-  ];
   const errorsPerChar = useSelector((state) => state.analytics.errorsPerChar);
   const top5Errors = Object.keys(errorsPerChar)
     .map((key) => {

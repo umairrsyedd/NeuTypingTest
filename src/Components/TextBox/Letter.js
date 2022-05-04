@@ -18,12 +18,12 @@ export default function Letter({ wordindex, letterindex, letter }) {
           : ""
       } 
       ${
-        typedArray[wordindex][letterindex].untyped == false
+        typedArray[wordindex][letterindex].untyped === false
           ? ""
           : "Letter--typed"
       }      
       ${
-        isFocused && typedArray[wordindex][letterindex].incorrect == true
+        isFocused && typedArray[wordindex][letterindex].incorrect === true
           ? "Letter--Incorrect"
           : ""
       }

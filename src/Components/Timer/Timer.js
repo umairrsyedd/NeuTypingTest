@@ -26,7 +26,7 @@ export default function Timer() {
       }, 1000);
       return () => clearInterval(timerId);
     }
-  }, [isActive, isEnded, secondsUsed, hasStarted, dispatch]);
+  }, [isActive, isEnded, secondsUsed, hasStarted, IsTestMode, dispatch]);
 
   return (
     <div className="Timer">
@@ -39,7 +39,7 @@ export default function Timer() {
             <span>Time Left </span>
             <span
               className={`Timer__Time ${
-                timeLimit.minutes == 0 && timeLimit.seconds < 10 && !isEnded
+                timeLimit.minutes === 0 && timeLimit.seconds < 10 && !isEnded
                   ? "Timer__Time--Ending"
                   : ""
               }`}

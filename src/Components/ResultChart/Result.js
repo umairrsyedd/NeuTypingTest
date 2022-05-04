@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ResultChart from "./ResultChart";
 import { resetTimer } from "State/Features/TimerSlice";
@@ -13,6 +13,11 @@ export default function Result() {
   const dispatch = useDispatch();
   const { speed } = useSelector((state) => state.analytics);
   const Difficulty = useSelector((state) => state.settings.Difficulty);
+
+  useEffect(() => {
+    dispatch(setZenMode(false));
+    dispatch(toggleIsFocused());
+  }, [dispatch]);
   return (
     <div className="TestEnd__Container">
       <div>

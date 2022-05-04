@@ -1,7 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { EasyWords } from "Data/EasyWords";
-import { MediumWords } from "Data/MediumWords";
-import { HardWords } from "Data/HardWords";
 import GenerateText, { MakeTypedArray } from "Utils/GenerateText";
 
 // create async thunk to generate text and typed array

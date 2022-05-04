@@ -25,9 +25,6 @@ import useSound from "use-sound";
 import keySound from "Assets/KeySound.wav";
 import wrongKeySound from "Assets/WrongKeySound.wav";
 import { changeAccuracy } from "State/Features/AnalyticsSlice.js";
-import { resetTimer } from "State/Features/TimerSlice.js";
-import { resetAnalytics } from "State/Features/AnalyticsSlice.js";
-import ResultChart from "Components/ResultChart/ResultChart.js";
 import CapsLock from "Components/CapsLock/CapsLock.js";
 import { useState } from "react";
 import {
@@ -54,7 +51,7 @@ export default function TextBox() {
   useEffect(() => {
     dispatch(generateText(Difficulty));
     dispatch(setKeyPressed(""));
-  }, []);
+  }, [Difficulty, dispatch]);
 
   const handleKeyPress = (e) => {
     dispatch(setZenMode(true));

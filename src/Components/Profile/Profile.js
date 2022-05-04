@@ -24,6 +24,7 @@ export default function Profile() {
                 className="Avatar"
                 src={Profile__Picture}
                 data-tip="That's Me!"
+                alt="Profile Photo"
               ></img>
               <span className="Name" data-tip="Syed Muhammed Umair">
                 Syed Umair
@@ -50,6 +51,7 @@ export default function Profile() {
                 href="https://www.linkedin.com/in/umairrsyedd/"
                 target="_blank"
                 data-tip="Linkedin"
+                rel="noreferrer"
               >
                 <i className="LinkedIn">
                   <AiFillLinkedin
@@ -62,6 +64,7 @@ export default function Profile() {
                 href="https://www.github.com/umairrsyedd"
                 target="_blank"
                 data-tip="Github"
+                rel="noreferrer"
               >
                 <i className="Github">
                   <AiFillGithub
@@ -74,6 +77,7 @@ export default function Profile() {
                 href="https://angel.co/u/umairrsyedd"
                 target="_blank"
                 data-tip="Angelist"
+                rel="noreferrer"
               >
                 <i className="Angellist">
                   <FaAngellist
@@ -86,6 +90,7 @@ export default function Profile() {
                 href="https://www.hashnode.com/@umairrsyedd"
                 target="_blank"
                 data-tip="Hashnode"
+                rel="noreferrer"
               >
                 <i className="HashNodeJs">
                   <SiHashnode

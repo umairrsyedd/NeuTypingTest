@@ -1,6 +1,8 @@
 export function highlightCorrectKey(keyPressed) {
   let key = keyPressed.toUpperCase();
-  key === "␣" ? (key = "Space") : (key = key);
+  if (key === "␣") {
+    key = "Space";
+  }
   try {
     if (document.querySelector(`#Box_${key}>rect`)) {
       document
@@ -25,7 +27,9 @@ export function highlightCorrectKey(keyPressed) {
 
 export function highlightIncorrectKey(keyPressed) {
   let key = keyPressed.toUpperCase();
-  key === "␣" ? (key = "Space") : (key = key);
+  if (key === "␣") {
+    key = "Space";
+  }
   try {
     if (document.querySelector(`#Box_${key}>rect`)) {
       document
