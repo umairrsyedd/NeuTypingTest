@@ -115,7 +115,9 @@ export default function TextBox() {
         <>
           <CapsLock />
           <div
-            className={`Button TextBox ${cursorHidden ? "CursorHidden" : ""}`}
+            className={`Button TextBox ${
+              cursorHidden && hasStarted ? "CursorHidden" : ""
+            }`}
             tabIndex="0"
             onKeyPress={(e) => {
               handleKeyPress(e);
