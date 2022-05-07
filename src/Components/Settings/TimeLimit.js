@@ -10,7 +10,6 @@ export default function TimeLimit() {
   const TimeLimit = useSelector((state) => state.timer.timeLimit);
   const IsTestMode = useSelector((state) => state.settings.IsTestMode);
   const Difficulty = useSelector((state) => state.settings.Difficulty);
-  const isEnded = useSelector((state) => state.timer.isEnded);
   const zenMode = useSelector((state) => state.textbox.zenMode);
   const dispatch = useDispatch();
   return (
