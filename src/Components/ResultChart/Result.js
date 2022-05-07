@@ -37,7 +37,6 @@ export default function Result() {
             dispatch(resetTimer());
             dispatch(generateText(Difficulty));
             dispatch(resetAnalytics());
-            dispatch(toggleIsFocused());
             dispatch(setKeyPressed(""));
             dispatch(setZenMode(false));
           }}
