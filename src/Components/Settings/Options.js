@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { VscUnmute, VscMute } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDarkUI, toggleMuted } from "State/Features/SettingsSlice";
@@ -7,18 +7,33 @@ import useSound from "use-sound";
 import TurnOnDarkUI from "Assets/TurnOnDarkUI.mp3";
 import TurnOffDarkUI from "Assets/TurnOffDarkUI.mp3";
 
+function updateLocalStorage(key, value) {
+  localStorage.setItem(key, value);
+}
+
 export default function Options() {
   const Muted = useSelector((state) => state.settings.Muted);
   const DarkUI = useSelector((state) => state.settings.DarkUI);
-  const dispatch = useDispatch();
   const [SoundTurnOnDark] = useSound(TurnOnDarkUI, { volume: 0.8 });
   const [SoundTurnOffDark] = useSound(TurnOffDarkUI, { volume: 0.8 });
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem("DarkUI") === "true") {
+      dispatch(toggleDarkUI());
+    }
+    if (localStorage.getItem("Muted") === "true") {
+      dispatch(toggleMuted());
+    }
+  }, [dispatch]);
+
   return (
     <div className="Settings__Options">
       <button
         className={`Button ${Muted ? "Button--Inactive" : "Button--Active"}`}
         onClick={() => {
           dispatch(toggleMuted());
+          updateLocalStorage("Muted", !Muted);
         }}
       >
         {Muted ? <VscMute /> : <VscUnmute />}
@@ -27,6 +42,7 @@ export default function Options() {
         className={`Button ${DarkUI ? "Button--Inactive" : "Button--Active"}`}
         onClick={() => {
           dispatch(toggleDarkUI());
+          updateLocalStorage("DarkUI", !DarkUI);
         }}
         onMouseDown={() => {
           if (DarkUI) {
