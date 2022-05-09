@@ -35,6 +35,7 @@ export default function Options() {
           dispatch(toggleMuted());
           updateLocalStorage("Muted", !Muted);
         }}
+        aria-label={Muted ? "Unmute" : "Mute"}
       >
         {Muted ? <VscMute /> : <VscUnmute />}
       </button>
@@ -51,6 +52,7 @@ export default function Options() {
             SoundTurnOnDark();
           }
         }}
+        aria-label={DarkUI ? "Turn off dark mode" : "Turn on dark mode"}
       >
         {DarkUI ? <MdDarkMode /> : <MdLightMode />}
       </button>
