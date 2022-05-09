@@ -29,7 +29,6 @@ export default function Letter({ wordindex, letterindex, letter }) {
       }
       `}
       id={`Word_${wordindex}Letter_${letterindex}`}
-      key={`Word_${wordindex}Letter_${letterindex}`}
     >
       {letter}
     </span>

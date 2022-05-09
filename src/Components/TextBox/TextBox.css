@@ -1,27 +1,18 @@
 .TextBox {
   font-size: 1.8rem !important;
-  font-family: "Roboto Mono", -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    "Roboto",
-    "Oxygen",
-    "Ubuntu",
-    "Cantarell",
-    "Fira Sans",
-    "Droid Sans",
-    "Helvetica Neue",
-    monospace;
+  font-family: "Roboto Mono", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", monospace;
   word-wrap: break-word;
   width: 756px;
   min-height: 160px;
 }
 
 .TextBox:focus {
-  box-shadow: 2px 2px 3px var(--boxshadow-1),
-    -2px -2px 3px var(--boxshadow-2);
+  box-shadow: 2px 2px 3px var(--boxshadow-1), -2px -2px 3px var(--boxshadow-2);
 }
 
-.Text__Activate{
+.Text__Activate {
   font-size: 1rem;
   margin-top: 1rem;
   text-align: center;
@@ -38,19 +29,17 @@
   opacity: 0.8;
 }
 
-
 .Letter--Blur {
   color: transparent;
   text-shadow: 0 0 5px var(--letter-blur);
   opacity: 0.5;
-
 }
 .Letter--Correct {
   opacity: 1;
 }
 .Letter--Incorrect {
   color: red;
-  opacity : 0.6
+  opacity: 0.6;
 }
 .Letter--Active {
   border-bottom: 3px solid var(--secondary-color);
@@ -58,26 +47,9 @@
 }
 @keyframes blink {
   100% {
-    background-color: var(--secondary-color); 
+    background-color: var(--secondary-color);
     color: var(--primary-color);
   }
-}
-
-.TestEnd__Container {
-  display: flex;
-  align-items: center;
-  width: 80%;
-  height: 175px;
-}
-
-.TestEnd__Heading {
-  text-align: center;
-}
-
-.TestEnd__Emp {
-  font-size: 1.5rem;
-  font-style: oblique;
-  margin: 0.1rem;
 }
 
 .caps-lock-text {
@@ -87,6 +59,6 @@
   min-height: 1rem;
 }
 
-.CursorHidden{
+.CursorHidden {
   cursor: none !important;
 }

@@ -11,6 +11,7 @@ export default function Words({ text }) {
               wordindex={wordindex}
               letterindex={letterindex}
               letter={letter}
+              key={`Word_${wordindex}Letter_${letterindex}`}
             />
           );
         })}
