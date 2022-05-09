@@ -9,23 +9,21 @@ import "./Home.css";
 function Home() {
   const DarkUI = useSelector((state) => state.settings.DarkUI);
   return (
-    <>
-      <div className="Home" data-theme={`${DarkUI ? "Dark" : ""}`}>
-        <div className="Home__Settings">
-          <Settings />
-        </div>
-        <div className="Home__Main">
-          <div className="Home__Main__Container">
-            <Analytics />
-            <TextBox />
-            <Keyboard />
-          </div>
-        </div>
-        <div className="Home__Profile">
-          <Profile />
+    <div className="Home" data-theme={`${DarkUI ? "Dark" : ""}`}>
+      <div className="Home__Settings">
+        <Settings />
+      </div>
+      <div className="Home__Main">
+        <div className="Home__Main__Container">
+          <Analytics />
+          <TextBox />
+          <Keyboard />
         </div>
       </div>
-    </>
+      <div className="Home__Profile">
+        <Profile />
+      </div>
+    </div>
   );
 }
 export default Home;

@@ -31,7 +31,7 @@ import {
   highlightCorrectKey,
   highlightIncorrectKey,
 } from "Utils/KeyboardHighlight.js";
-import Result from "Components/ResultChart/Result.js";
+import Result from "Components/Result/Result.js";
 
 export default function TextBox() {
   const { text, cursor } = useSelector((state) => state.textbox);

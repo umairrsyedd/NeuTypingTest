@@ -1,0 +1,20 @@
+.TestEnd__Container {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 175px;
+}
+
+.TestEnd__Heading {
+  text-align: center;
+}
+
+.TestEnd__Emp {
+  font-size: 1.5rem;
+  font-style: oblique;
+  margin: 0.1rem;
+}
+
+.Result__Button {
+  margin-top: 2rem !important;
+}

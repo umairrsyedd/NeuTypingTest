@@ -1,21 +1,20 @@
 .highlight--correct {
-    fill: var(--secondary-color);
-    animation: type cubic-bezier(0.19, 1, 0.22, 1) 1;
+  fill: var(--secondary-color);
+  animation: type cubic-bezier(0.19, 1, 0.22, 1) 1;
 }
 
 .highlight--incorrect {
-    fill: red;
-    animation: type cubic-bezier(0.19, 1, 0.22, 1) 1;
+  fill: red;
+  animation: type cubic-bezier(0.19, 1, 0.22, 1) 1;
 }
 
 .highlight--correct--text {
-    fill: var(--primary-color);
+  fill: var(--primary-color);
 }
 
 @keyframes type {
-    100% {
-        fill:#F5F0F0;
-        opacity: 1;
-    }
-
+  100% {
+    fill: #f5f0f0;
+    opacity: 1;
+  }
 }

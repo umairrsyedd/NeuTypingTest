@@ -1,5 +1,5 @@
 import React from "react";
-import Profile__Picture from "Assets/Profile-Picture.jpg";
+import Profile__Picture from "Assets/Profile-Picture.webp";
 import "./Profile.css";
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 import { FaAngellist } from "react-icons/fa";
@@ -52,6 +52,7 @@ export default function Profile() {
                 target="_blank"
                 data-tip="Linkedin"
                 rel="noreferrer"
+                aria-label="Linkedin"
               >
                 <i className="LinkedIn">
                   <AiFillLinkedin
@@ -65,6 +66,7 @@ export default function Profile() {
                 target="_blank"
                 data-tip="Github"
                 rel="noreferrer"
+                aria-label="Github"
               >
                 <i className="Github">
                   <AiFillGithub
@@ -78,6 +80,7 @@ export default function Profile() {
                 target="_blank"
                 data-tip="Angelist"
                 rel="noreferrer"
+                aria-label="Angelist"
               >
                 <i className="Angellist">
                   <FaAngellist
@@ -91,6 +94,7 @@ export default function Profile() {
                 target="_blank"
                 data-tip="Hashnode"
                 rel="noreferrer"
+                aria-label="Hashnode"
               >
                 <i className="HashNodeJs">
                   <SiHashnode

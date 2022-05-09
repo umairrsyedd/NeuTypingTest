@@ -26,7 +26,6 @@
   align-items: center;
 }
 
-
 /* Reusable Classes */
 .Button {
   font-size: 1.1rem;
@@ -41,13 +40,12 @@
   margin: 0.5rem;
 }
 .Button--Active {
-    box-shadow: 2px 2px 3px var(--boxshadow-1),
-    -2px -2px 3px var(--boxshadow-2);
+  box-shadow: 2px 2px 3px var(--boxshadow-1), -2px -2px 3px var(--boxshadow-2);
 }
 
 .Button--Inactive {
-    box-shadow: inset 2px 2px 3px var(--boxshadow-1), inset
-    -2px -2px 3px var(--boxshadow-2);
+  box-shadow: inset 2px 2px 3px var(--boxshadow-1),
+    inset -2px -2px 3px var(--boxshadow-2);
 }
 
 @media screen and (max-width: 768px) {
@@ -58,19 +56,16 @@
   }
   .Home__Profile {
     grid-area: Profile;
+  }
+  .Home__Main {
+    display: none;
+  }
+  .Home__Settings {
+    display: none;
+  }
+  .DesktopHidden {
+    display: block;
+    color: var(--primary-color);
+    background: var(--secondary-color);
+  }
 }
-.Home__Main {
-  display: none;
-}
-.Home__Settings {
-  display: none;
-}
-.DesktopHidden {
-  display: block;
-  color: var(--primary-color);
-  background: var(--secondary-color);
-
-}
-}
-
-  

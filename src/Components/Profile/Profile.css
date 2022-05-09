@@ -30,23 +30,22 @@
 .Username {
   align-self: flex-start;
   padding-left: 1rem;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .Icons__Container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding : 1rem;
+  padding: 1rem;
   width: 100%;
 }
 
 .About {
   font-size: 1rem;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .DesktopHidden {
   display: none;
-  
 }

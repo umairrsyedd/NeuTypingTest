@@ -6,13 +6,11 @@ import "./Settings.css";
 
 export default function Settings() {
   return (
-    <>
-      <div className="Settings">
-        <Modes />
-        <TimeLimit />
-        <Difficulty />
-        <Options />
-      </div>
-    </>
+    <div className="Settings">
+      <Modes />
+      <TimeLimit />
+      <Difficulty />
+      <Options />
+    </div>
   );
 }

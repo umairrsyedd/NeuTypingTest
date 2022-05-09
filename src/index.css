@@ -6,7 +6,6 @@
   --letter-blur: #000000;
   color: var(--secondary-color);
   background-color: var(--primary-color);
-
 }
 [data-theme="Dark"] {
   --primary-color: #26243d;

@@ -16,10 +16,9 @@
 .Settings__Time {
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   min-height: 15%;
 }
-
 
 .Settings__Difficulty {
   display: flex;
