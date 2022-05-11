@@ -39,40 +39,54 @@
     />
     <meta
       name="description"
-      content="Neu Typing Test is a Minimilumistic UI and Clean Interface to help you improve your typing skills with live Speed and Accuracy tracking"
+      content="Neu Typing Test is built with a Minimalimistic UI to help you improve your typing skills with live Speed and Accuracy tracking"
     />
     <title>Neu Typing Test - Minimalistic UI Typing Test</title>
   </head>
   <style>
     .full-page-loader {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-}
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+    }
 
-.full-page-loader > img {
-  animation: 1.8s infinite heartbeat;
-}
+    .full-page-loader > img {
+      animation: 1.8s infinite heartbeat;
+    }
 
-@keyframes heartbeat {
-  0% { transform: scale(1); }
-  25% { transform: scale(1.1); }
-  50% { transform: scale(1); }
-  75% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-    </style>
+    @keyframes heartbeat {
+      0% {
+        transform: scale(1);
+      }
+      25% {
+        transform: scale(1.1);
+      }
+      50% {
+        transform: scale(1);
+      }
+      75% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
       <div class="full-page-loader">
-        <img width="200" src="%PUBLIC_URL%/Logo.webp" alt="Neu Typing Test Logo" />
+        <img
+          width="200"
+          src="%PUBLIC_URL%/Logo.webp"
+          alt="Neu Typing Test Logo"
+        />
       </div>
     </div>
   </body>
