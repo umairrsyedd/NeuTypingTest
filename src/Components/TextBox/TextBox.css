@@ -62,3 +62,8 @@
 .CursorHidden {
   cursor: none !important;
 }
+
+.Result--Fallback{
+  font-size: 1.3rem;
+  animation: 1.8s infinite heartbeat;
+}
