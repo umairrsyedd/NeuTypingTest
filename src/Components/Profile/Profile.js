@@ -36,14 +36,14 @@ export default function Profile() {
 
             <div className="About__Container">
               <p className="About">
-                Hiii! I am a Full Stack Web Developer working with the
-                JavaScript Stack of React and Node. Along with hand's on
-                experience in building Golang Microservices.
+                Hii! I am a Full Stack Web Developer working with the JavaScript
+                Stack of React and Node. Along with hand's on experience in
+                building Golang Microservices.
               </p>
               <p className="About">
-                This Application is inspired by the Neumorphic Design Language.
-                I have built this Project with React and Redux for state
-                management.
+                Neu Typing Test is an application to test & practice your typing
+                speed in a Minimalistic UI inspired by the Neumorphic design
+                language.
               </p>
             </div>
             <div className="Icons__Container">
