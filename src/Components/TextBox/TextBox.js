@@ -144,7 +144,7 @@ export default function TextBox() {
           </div>
         </>
       ) : (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div>Loading Results...</div>}>
           <Result />
         </Suspense>
       )}
