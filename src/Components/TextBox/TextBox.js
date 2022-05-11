@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   incrementLetter,
@@ -31,7 +31,7 @@ import {
   highlightCorrectKey,
   highlightIncorrectKey,
 } from "Utils/KeyboardHighlight.js";
-import Result from "Components/Result/Result.js";
+const Result = lazy(() => import("Components/Result/Result.js"));
 
 export default function TextBox() {
   const { text, cursor } = useSelector((state) => state.textbox);
@@ -144,7 +144,9 @@ export default function TextBox() {
           </div>
         </>
       ) : (
-        <Result />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Result />
+        </Suspense>
       )}
     </>
   );
