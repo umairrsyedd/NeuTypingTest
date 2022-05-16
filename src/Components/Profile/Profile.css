@@ -40,6 +40,9 @@
   padding: 1rem;
   width: 100%;
 }
+.About__Container{
+  max-width: 375px;
+}
 
 .About {
   font-size: 1rem;
