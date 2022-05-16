@@ -36,14 +36,14 @@ export default function Profile() {
 
             <div className="About__Container">
               <p className="About">
-                Hii! I am a Full Stack Web Developer working with the JavaScript
-                Stack of React and Node. Along with hand's on experience in
-                building Golang Microservices.
-              </p>
-              <p className="About">
                 Neu Typing Test is an application to test & practice your typing
                 speed in a Minimalistic UI inspired by the Neumorphic design
                 language.
+              </p>
+              <p className="About">
+                Hii! I am a Full Stack Web Developer working with the JavaScript
+                Stack of React and Node. Along with hand's on experience in
+                building Golang Microservices.
               </p>
             </div>
             <div className="Icons__Container">
