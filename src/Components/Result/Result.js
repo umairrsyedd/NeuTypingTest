@@ -26,7 +26,7 @@ export default function Result() {
           <span className="TestEnd__Emp">
             {Math.round(speed)} words per minute
           </span>
-          which is {speed >= 100 ? "way" : ""}
+          which is {speed >= 100 ? "amazingly" : ""}
           <span className="TestEnd__Emp">
             {speed > 45 ? "above Average" : "below Average"}
           </span>
