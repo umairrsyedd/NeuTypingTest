@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setTimeLimit } from "State/Features/TimerSlice";
-import { resetTimer } from "State/Features/TimerSlice";
-import { resetAnalytics } from "State/Features/AnalyticsSlice";
-import { generateText } from "State/Features/TextboxSlice";
-import { setKeyPressed } from "State/Features/KeyboardSlice.js";
+import { setTimeLimit } from "Components/Timer/TimerSlice";
+import { resetTimer } from "Components/Timer/TimerSlice";
+import { resetAnalytics } from "Components/Analytics/AnalyticsSlice";
+import { generateText } from "Components/TextBox/TextboxSlice";
+import { setKeyPressed } from "Components/Keyboard/KeyboardSlice.js";
 
 export default function TimeLimit() {
   const TimeLimit = useSelector((state) => state.timer.timeLimit);

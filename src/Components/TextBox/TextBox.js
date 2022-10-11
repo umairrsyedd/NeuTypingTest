@@ -8,23 +8,26 @@ import {
   markCorrect,
   markIncorrect,
   setZenMode,
-} from "State/Features/TextboxSlice.js";
+} from "Components/TextBox/TextboxSlice.js";
 import {
   incrementError,
   incrementErrorPerChar,
-} from "State/Features/AnalyticsSlice.js";
+} from "Components/Analytics/AnalyticsSlice.js";
 import {
   incrementCharsTyped,
   incrementCorrectChars,
-} from "State/Features/AnalyticsSlice.js";
-import { startTimer, toggleIsActive } from "State/Features/TimerSlice.js";
+} from "Components/Analytics/AnalyticsSlice.js";
+import { startTimer, toggleIsActive } from "Components/Timer/TimerSlice.js";
 import Words from "./Words.js";
 import "./TextBox.css";
-import { setKeyPressed, setCapsLock } from "State/Features/KeyboardSlice.js";
+import {
+  setKeyPressed,
+  setCapsLock,
+} from "Components/Keyboard/KeyboardSlice.js";
 import useSound from "use-sound";
 import keySound from "Assets/KeySound.wav";
 import wrongKeySound from "Assets/WrongKeySound.wav";
-import { changeAccuracy } from "State/Features/AnalyticsSlice.js";
+import { changeAccuracy } from "Components/Analytics/AnalyticsSlice.js";
 import CapsLock from "Components/CapsLock/CapsLock.js";
 import { useState } from "react";
 import {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { VscUnmute, VscMute } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleDarkUI, toggleMuted } from "State/Features/SettingsSlice";
+import { toggleDarkUI, toggleMuted } from "Components/Settings/SettingsSlice";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import useSound from "use-sound";
 import TurnOnDarkUI from "Assets/TurnOnDarkUI.mp3";

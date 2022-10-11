@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import SettingsReducer from "./Features/SettingsSlice";
-import AnalyticsReducer from "./Features/AnalyticsSlice";
-import TextboxReducer from "./Features/TextboxSlice";
-import KeyboardReducer from "./Features/KeyboardSlice";
-import TimerReducer from "./Features/TimerSlice";
+import SettingsReducer from "../Components/Settings/SettingsSlice";
+import AnalyticsReducer from "../Components/Analytics/AnalyticsSlice";
+import TextboxReducer from "../Components/TextBox/TextboxSlice";
+import KeyboardReducer from "../Components/Keyboard/KeyboardSlice";
+import TimerReducer from "../Components/Timer/TimerSlice";
 export default configureStore({
   reducer: {
     settings: SettingsReducer,
