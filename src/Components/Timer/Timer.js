@@ -1,8 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { tick } from "State/Features/TimerSlice";
-import { changeSpeed, changeAccuracy } from "State/Features/AnalyticsSlice";
+import { tick } from "Components/Timer/TimerSlice";
+import {
+  changeSpeed,
+  changeAccuracy,
+} from "Components/Analytics/AnalyticsSlice";
 import "./Timer.css";
 
 export default function Timer() {

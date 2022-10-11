@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ResultChart from "./ResultChart";
-import { resetTimer } from "State/Features/TimerSlice";
-import { generateText } from "State/Features/TextboxSlice";
-import { resetAnalytics } from "State/Features/AnalyticsSlice";
-import { toggleIsFocused } from "State/Features/TextboxSlice";
-import { setKeyPressed } from "State/Features/KeyboardSlice";
-import { setZenMode } from "State/Features/TextboxSlice";
+import { resetTimer } from "Components/Timer/TimerSlice";
+import { generateText } from "Components/TextBox/TextboxSlice";
+import { resetAnalytics } from "Components/Analytics/AnalyticsSlice";
+import { toggleIsFocused } from "Components/TextBox/TextboxSlice";
+import { setKeyPressed } from "Components/Keyboard/KeyboardSlice";
+import { setZenMode } from "Components/TextBox/TextboxSlice";
 import "./Result.css";
 
 export default function Result() {

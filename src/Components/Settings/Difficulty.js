@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
-import { changeDifficulty } from "State/Features/SettingsSlice";
-import { resetTimer } from "State/Features/TimerSlice";
-import { resetAnalytics } from "State/Features/AnalyticsSlice";
-import { generateText } from "State/Features/TextboxSlice";
-import { setKeyPressed } from "State/Features/KeyboardSlice.js";
+import { changeDifficulty } from "Components/Settings/SettingsSlice";
+import { resetTimer } from "Components/Timer/TimerSlice";
+import { resetAnalytics } from "Components/Analytics/AnalyticsSlice";
+import { generateText } from "Components/TextBox/TextboxSlice";
+import { setKeyPressed } from "Components/Keyboard/KeyboardSlice.js";
 import { useEffect } from "react";
 
 export default function Difficulty() {
