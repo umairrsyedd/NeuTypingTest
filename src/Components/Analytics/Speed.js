@@ -1,12 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 import ReactTooltip from "react-tooltip";
 
-export default function Speed() {
-  const speed = useSelector((state) => state.analytics.speed);
-  const IsTestMode = useSelector((state) => state.settings.IsTestMode);
-  const isEnded = useSelector((state) => state.timer.isEnded);
-  return IsTestMode ? (
+function Speed({ isTestMode, speed, isEnded }) {
+  return isTestMode ? (
     <>
       <ReactTooltip textColor="#f5f0f0" backgroundColor="#26243d" />
       <div
@@ -20,3 +17,13 @@ export default function Speed() {
     </>
   ) : null;
 }
+
+const mapStateToProps = (state) => {
+  return {
+    speed: state.analytics.speed,
+    isEnded: state.timer.isEnded,
+    isTestMode: state.settings.IsTestMode,
+  };
+};
+
+export default connect(mapStateToProps)(Speed);

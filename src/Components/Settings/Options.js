@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { VscUnmute, VscMute } from "react-icons/vsc";
-import { useDispatch, useSelector } from "react-redux";
 import { toggleDarkUI, toggleMuted } from "Components/Settings/SettingsSlice";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import useSound from "use-sound";
@@ -11,28 +11,25 @@ function updateLocalStorage(key, value) {
   localStorage.setItem(key, value);
 }
 
-export default function Options() {
-  const Muted = useSelector((state) => state.settings.Muted);
-  const DarkUI = useSelector((state) => state.settings.DarkUI);
+function Options({ Muted, DarkUI, toggleMuted, toggleDarkUI }) {
   const [SoundTurnOnDark] = useSound(TurnOnDarkUI, { volume: 0.8 });
   const [SoundTurnOffDark] = useSound(TurnOffDarkUI, { volume: 0.8 });
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (localStorage.getItem("DarkUI") === "true") {
-      dispatch(toggleDarkUI());
+      toggleDarkUI();
     }
     if (localStorage.getItem("Muted") === "true") {
-      dispatch(toggleMuted());
+      toggleMuted();
     }
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="Settings__Options">
       <button
         className={`Button ${Muted ? "Button--Inactive" : "Button--Active"}`}
         onClick={() => {
-          dispatch(toggleMuted());
+          toggleMuted();
           updateLocalStorage("Muted", !Muted);
         }}
         aria-label={Muted ? "Unmute" : "Mute"}
@@ -42,7 +39,7 @@ export default function Options() {
       <button
         className={`Button ${DarkUI ? "Button--Inactive" : "Button--Active"}`}
         onClick={() => {
-          dispatch(toggleDarkUI());
+          toggleDarkUI();
           updateLocalStorage("DarkUI", !DarkUI);
         }}
         onMouseDown={() => {
@@ -59,3 +56,19 @@ export default function Options() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    Muted: state.settings.Muted,
+    DarkUI: state.settings.DarkUI,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleMuted: () => dispatch(toggleMuted()),
+    toggleDarkUI: () => dispatch(toggleDarkUI()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Options);

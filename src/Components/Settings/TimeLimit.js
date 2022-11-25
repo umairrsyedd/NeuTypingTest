@@ -1,17 +1,22 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { setTimeLimit } from "Components/Timer/TimerSlice";
 import { resetTimer } from "Components/Timer/TimerSlice";
 import { resetAnalytics } from "Components/Analytics/AnalyticsSlice";
 import { generateText } from "Components/TextBox/TextboxSlice";
 import { setKeyPressed } from "Components/Keyboard/KeyboardSlice.js";
 
-export default function TimeLimit() {
-  const TimeLimit = useSelector((state) => state.timer.timeLimit);
-  const IsTestMode = useSelector((state) => state.settings.IsTestMode);
-  const Difficulty = useSelector((state) => state.settings.Difficulty);
-  const zenMode = useSelector((state) => state.textbox.zenMode);
-  const dispatch = useDispatch();
+function TimeLimit({
+  TimeLimit,
+  IsTestMode,
+  Difficulty,
+  zenMode,
+  setTimeLimit,
+  resetTimer,
+  generateText,
+  resetAnalytics,
+  setKeyPressed,
+}) {
   return (
     <div className="Settings__Time">
       {
@@ -22,11 +27,11 @@ export default function TimeLimit() {
                 TimeLimit === 1 ? "Button--Active" : "Button--Inactive"
               }`}
               onClick={() => {
-                dispatch(setTimeLimit(1));
-                dispatch(resetTimer());
-                dispatch(generateText(Difficulty));
-                dispatch(resetAnalytics());
-                dispatch(setKeyPressed(""));
+                setTimeLimit(1);
+                resetTimer();
+                generateText(Difficulty);
+                resetAnalytics();
+                setKeyPressed("");
               }}
             >
               1m
@@ -36,11 +41,11 @@ export default function TimeLimit() {
                 TimeLimit === 3 ? "Button--Active" : "Button--Inactive"
               }`}
               onClick={() => {
-                dispatch(setTimeLimit(3));
-                dispatch(resetTimer());
-                dispatch(generateText(Difficulty));
-                dispatch(resetAnalytics());
-                dispatch(setKeyPressed(""));
+                setTimeLimit(3);
+                resetTimer();
+                generateText(Difficulty);
+                resetAnalytics();
+                setKeyPressed("");
               }}
             >
               3m
@@ -50,11 +55,11 @@ export default function TimeLimit() {
                 TimeLimit === 5 ? "Button--Active" : "Button--Inactive"
               }`}
               onClick={() => {
-                dispatch(setTimeLimit(5));
-                dispatch(resetTimer());
-                dispatch(generateText(Difficulty));
-                dispatch(resetAnalytics());
-                dispatch(setKeyPressed(""));
+                setTimeLimit(5);
+                resetTimer();
+                generateText(Difficulty);
+                resetAnalytics();
+                setKeyPressed("");
               }}
             >
               5m
@@ -67,3 +72,24 @@ export default function TimeLimit() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    TimeLimit: state.timer.timeLimit,
+    IsTestMode: state.settings.IsTestMode,
+    Difficulty: state.settings.Difficulty,
+    zenMode: state.textbox.zenMode,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setTimeLimit: (time) => dispatch(setTimeLimit(time)),
+    resetTimer: () => dispatch(resetTimer()),
+    generateText: (difficulty) => dispatch(generateText(difficulty)),
+    resetAnalytics: () => dispatch(resetAnalytics()),
+    setKeyPressed: (key) => dispatch(setKeyPressed(key)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TimeLimit);

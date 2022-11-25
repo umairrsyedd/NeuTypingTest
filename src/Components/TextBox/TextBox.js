@@ -1,5 +1,5 @@
-import React, { useEffect, lazy, Suspense } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect, lazy, Suspense } from "react";
+import { connect } from "react-redux";
 import {
   incrementLetter,
   toggleIsFocused,
@@ -29,82 +29,104 @@ import keySound from "Assets/KeySound.wav";
 import wrongKeySound from "Assets/WrongKeySound.wav";
 import { changeAccuracy } from "Components/Analytics/AnalyticsSlice.js";
 import CapsLock from "Components/CapsLock/CapsLock.js";
-import { useState } from "react";
 import {
   highlightCorrectKey,
   highlightIncorrectKey,
 } from "Utils/KeyboardHighlight.js";
 const Result = lazy(() => import("Components/Result/Result.js"));
 
-export default function TextBox() {
-  const { text, cursor } = useSelector((state) => state.textbox);
-  const { word, letter } = cursor;
-  const { isActive } = useSelector((state) => state.timer);
-  const { isEnded } = useSelector((state) => state.timer);
+function TextBox({
+  word,
+  letter,
+  text,
+  cursor,
+  isActive,
+  isEnded,
+  isFocused,
+  isMuted,
+  isPracticeMode,
+  Difficulty,
+  hasStarted,
+  generateText,
+  setKeyPressed,
+  setCapsLock,
+  incrementLetter,
+  incrementCharsTyped,
+  incrementCorrectChars,
+  markTyped,
+  markCorrect,
+  markIncorrect,
+  incrementError,
+  incrementErrorPerChar,
+  startTimer,
+  toggleIsActive,
+  toggleIsFocused,
+  changeAccuracy,
+  setZenMode,
+}) {
   const [playKeySound] = useSound(keySound, { volume: 0.3 });
   const [playWrongKeySound] = useSound(wrongKeySound, { volume: 0.3 });
-  const isFocused = useSelector((state) => state.textbox.isFocused);
-  const isMuted = useSelector((state) => state.settings.Muted);
-  const isPracticeMode = useSelector((state) => state.settings.IsPracticeMode);
   const [cursorHidden, setCursorHidden] = useState(false);
-  const hasStarted = useSelector((state) => state.timer.hasStarted);
-  const Difficulty = useSelector((state) => state.settings.Difficulty);
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(generateText(Difficulty));
-    dispatch(setKeyPressed(""));
-  }, [Difficulty, dispatch]);
+    generateText(Difficulty);
+    setKeyPressed("");
+    // window.addEventListener("keypress", () => {
+    //   document.getElementsByClassName("TextBox")[0].focus();
+    // });
+  }, [Difficulty, generateText, setKeyPressed]);
 
   const handleKeyPress = (e) => {
-    dispatch(setZenMode(true));
+    setZenMode(true);
     setCursorHidden(true);
     let key = e.key;
     if (isEnded) {
       return;
     }
+    // if (e.shiftKey) {
+    //   return;
+    // }
     if (e.getModifierState("CapsLock")) {
-      dispatch(setCapsLock(true));
+      setCapsLock(true);
     } else {
-      dispatch(setCapsLock(false));
+      setCapsLock(false);
     }
     if (!isActive || !hasStarted) {
-      dispatch(startTimer());
+      startTimer();
     }
     // if text is ending reset
     if (text[word].length - 1 === letter) {
       if (word === text.length - 1) {
-        dispatch(generateText(Difficulty));
-        dispatch(setKeyPressed(""));
+        generateText(Difficulty);
+        setKeyPressed("");
         return;
       }
     }
     if (key === " ") {
       key = "␣";
     }
-    dispatch(setKeyPressed(key));
+    setKeyPressed(key);
     if (key === text[word][letter]) {
-      dispatch(incrementLetter());
-      dispatch(incrementCharsTyped());
-      dispatch(incrementCorrectChars());
-      dispatch(markTyped({ word, letter }));
-      dispatch(markCorrect({ word, letter }));
+      incrementLetter();
+      incrementCharsTyped();
+      incrementCorrectChars();
+      markTyped({ word, letter });
+      markCorrect({ word, letter });
       highlightCorrectKey(key);
       if (isPracticeMode) {
-        dispatch(changeAccuracy());
+        changeAccuracy();
       }
       if (!isMuted) {
         playKeySound();
       }
     } else {
-      dispatch(incrementError());
-      dispatch(incrementErrorPerChar(text[word][letter]));
-      dispatch(incrementCharsTyped());
-      dispatch(markTyped({ word, letter }));
-      dispatch(markIncorrect({ word, letter }));
+      incrementError();
+      incrementErrorPerChar(text[word][letter]);
+      incrementCharsTyped();
+      markTyped({ word, letter });
+      markIncorrect({ word, letter });
       highlightIncorrectKey(key);
       if (isPracticeMode) {
-        dispatch(changeAccuracy());
+        changeAccuracy();
       }
       if (!isMuted) {
         playWrongKeySound();
@@ -126,21 +148,23 @@ export default function TextBox() {
               handleKeyPress(e);
             }}
             onBlur={() => {
-              dispatch(toggleIsActive());
-              dispatch(toggleIsFocused());
-              dispatch(setZenMode(false));
+              toggleIsActive();
+              toggleIsFocused();
+              setZenMode(false);
             }}
             onFocus={() => {
-              dispatch(toggleIsFocused());
+              toggleIsFocused();
             }}
             onMouseLeave={() => {
               setCursorHidden(false);
-              dispatch(setZenMode(false));
+              setZenMode(false);
             }}
           >
             <Words text={text} />
             {!isFocused ? (
-              <div className="Text__Activate">Click To Activate...</div>
+              <div className="Text__Activate">
+                Click Or Start Typing To Activate...
+              </div>
             ) : (
               <span></span>
             )}
@@ -158,3 +182,42 @@ export default function TextBox() {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    text: state.textbox.text,
+    word: state.textbox.cursor.word,
+    letter: state.textbox.cursor.letter,
+    cursor: state.textbox.cursor,
+    isActive: state.timer.isActive,
+    isEnded: state.timer.isEnded,
+    isFocused: state.textbox.isFocused,
+    isMuted: state.settings.Muted,
+    isPracticeMode: state.settings.IsPracticeMode,
+    Difficulty: state.settings.Difficulty,
+    hasStarted: state.timer.hasStarted,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    generateText: (Difficulty) => dispatch(generateText(Difficulty)),
+    setKeyPressed: (key) => dispatch(setKeyPressed(key)),
+    setCapsLock: (isCapsLock) => dispatch(setCapsLock(isCapsLock)),
+    incrementLetter: () => dispatch(incrementLetter()),
+    incrementCharsTyped: () => dispatch(incrementCharsTyped()),
+    incrementCorrectChars: () => dispatch(incrementCorrectChars()),
+    markTyped: (cursor) => dispatch(markTyped(cursor)),
+    markCorrect: (cursor) => dispatch(markCorrect(cursor)),
+    markIncorrect: (cursor) => dispatch(markIncorrect(cursor)),
+    incrementError: () => dispatch(incrementError()),
+    incrementErrorPerChar: (char) => dispatch(incrementErrorPerChar(char)),
+    startTimer: () => dispatch(startTimer()),
+    toggleIsActive: () => dispatch(toggleIsActive()),
+    toggleIsFocused: () => dispatch(toggleIsFocused()),
+    changeAccuracy: () => dispatch(changeAccuracy()),
+    setZenMode: (isZenMode) => dispatch(setZenMode(isZenMode)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TextBox);

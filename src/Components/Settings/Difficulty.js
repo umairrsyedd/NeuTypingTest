@@ -1,4 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { connect } from "react-redux";
 import { changeDifficulty } from "Components/Settings/SettingsSlice";
 import { resetTimer } from "Components/Timer/TimerSlice";
 import { resetAnalytics } from "Components/Analytics/AnalyticsSlice";
@@ -6,13 +7,17 @@ import { generateText } from "Components/TextBox/TextboxSlice";
 import { setKeyPressed } from "Components/Keyboard/KeyboardSlice.js";
 import { useEffect } from "react";
 
-export default function Difficulty() {
-  const Difficulty = useSelector((state) => state.settings.Difficulty);
-  const isEnded = useSelector((state) => state.timer.isEnded);
-  const zenMode = useSelector((state) => state.textbox.zenMode);
-  const dispatch = useDispatch();
-
-  useEffect(() => {}, [dispatch]);
+function Difficulty({
+  Difficulty,
+  changeDifficulty,
+  resetTimer,
+  generateText,
+  resetAnalytics,
+  setKeyPressed,
+  isEnded,
+  zenMode,
+}) {
+  useEffect(() => {}, [Difficulty, isEnded, zenMode]);
 
   return (
     <div className="Settings__Difficulty">
@@ -25,11 +30,11 @@ export default function Difficulty() {
               Difficulty === "Easy" ? "Button--Active" : "Button--Inactive"
             }`}
             onClick={() => {
-              dispatch(changeDifficulty("Easy"));
-              dispatch(resetTimer());
-              dispatch(generateText("Easy"));
-              dispatch(resetAnalytics());
-              dispatch(setKeyPressed(""));
+              changeDifficulty("Easy");
+              resetTimer();
+              generateText("Easy");
+              resetAnalytics();
+              setKeyPressed("");
             }}
           >
             Easy
@@ -39,11 +44,11 @@ export default function Difficulty() {
               Difficulty === "Medium" ? "Button--Active" : "Button--Inactive"
             }`}
             onClick={() => {
-              dispatch(changeDifficulty("Medium"));
-              dispatch(resetTimer());
-              dispatch(generateText("Medium"));
-              dispatch(resetAnalytics());
-              dispatch(setKeyPressed(""));
+              changeDifficulty("Medium");
+              resetTimer();
+              generateText("Medium");
+              resetAnalytics();
+              setKeyPressed("");
             }}
           >
             Medium
@@ -53,11 +58,11 @@ export default function Difficulty() {
               Difficulty === "Hard" ? "Button--Active" : "Button--Inactive"
             }`}
             onClick={() => {
-              dispatch(changeDifficulty("Hard"));
-              dispatch(resetTimer());
-              dispatch(generateText("Hard"));
-              dispatch(resetAnalytics());
-              dispatch(setKeyPressed(""));
+              changeDifficulty("Hard");
+              resetTimer();
+              generateText("Hard");
+              resetAnalytics();
+              setKeyPressed("");
             }}
           >
             Hard
@@ -67,3 +72,23 @@ export default function Difficulty() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    Difficulty: state.settings.Difficulty,
+    isEnded: state.timer.isEnded,
+    zenMode: state.textbox.zenMode,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeDifficulty: (Difficulty) => dispatch(changeDifficulty(Difficulty)),
+    resetTimer: () => dispatch(resetTimer()),
+    generateText: (Difficulty) => dispatch(generateText(Difficulty)),
+    resetAnalytics: () => dispatch(resetAnalytics()),
+    setKeyPressed: (keyPressed) => dispatch(setKeyPressed(keyPressed)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Difficulty);

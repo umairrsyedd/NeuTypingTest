@@ -1,10 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 
-export default function Accuracy() {
-  const accuracy = useSelector((state) => state.analytics.accuracy);
-  const isEnded = useSelector((state) => state.timer.isEnded);
-
+function Accuracy({ accuracy, isEnded }) {
   return (
     <div
       className={`Button Button--Analytics ${
@@ -16,3 +13,12 @@ export default function Accuracy() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    accuracy: state.analytics.accuracy,
+    isEnded: state.timer.isEnded,
+  };
+};
+
+export default connect(mapStateToProps)(Accuracy);

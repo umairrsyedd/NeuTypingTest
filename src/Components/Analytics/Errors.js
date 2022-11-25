@@ -1,9 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 
-export default function Errors() {
-  const errors = useSelector((state) => state.analytics.errors);
-  const isEnded = useSelector((state) => state.timer.isEnded);
+function Errors({ errors, isEnded }) {
   return (
     <div
       className={`Button Button--Analytics ${
@@ -14,3 +12,12 @@ export default function Errors() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    errors: state.analytics.errors,
+    isEnded: state.timer.isEnded,
+  };
+};
+
+export default connect(mapStateToProps)(Errors);
