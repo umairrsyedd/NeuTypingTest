@@ -1,12 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { EasyWords } from "Data/EasyWords";
 import GenerateText, { MakeTypedArray } from "Utils/GenerateText";
-import { highlightCorrectKey } from "Utils/KeyboardHighlight";
-import {
-  incrementCharsTyped,
-  incrementCorrectChars,
-} from "Components/Analytics/AnalyticsSlice.js";
-
 export const TextBoxSlice = createSlice({
   name: "textbox",
   initialState: {

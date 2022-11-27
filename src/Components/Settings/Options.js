@@ -22,7 +22,7 @@ function Options({ Muted, DarkUI, toggleMuted, toggleDarkUI }) {
     if (localStorage.getItem("Muted") === "true") {
       toggleMuted();
     }
-  }, []);
+  }, [toggleDarkUI, toggleMuted]);
 
   return (
     <div className="Settings__Options">
