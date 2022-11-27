@@ -40,20 +40,17 @@ export const AnalyticsSlice = createSlice({
     },
   },
   reducers: {
-    // Accuracy Reducers
     changeAccuracy: (state) => {
       state.accuracy = Number.parseFloat(
         (state.charsCorrect / state.charsTyped) * 100
       ).toFixed(2);
     },
-    // Error Reducers
     incrementError: (state) => {
       state.errors++;
     },
     decrementError: (state) => {
       state.errors--;
     },
-    // Speed Reducers
     incrementCharsTyped: (state) => {
       state.charsTyped++;
     },
@@ -111,7 +108,6 @@ export const AnalyticsSlice = createSlice({
         Space: 0,
       };
     },
-    // Error Per Char Reducers
     incrementErrorPerChar: (state, action) => {
       state.errorsPerChar[action.payload]++;
     },

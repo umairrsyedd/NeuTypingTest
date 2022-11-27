@@ -6,6 +6,12 @@
   --letter-blur: #000000;
   color: var(--secondary-color);
   background-color: var(--primary-color);
+  /* --toastify-color-dark: #121212; */
+  --toastify-color-dark: #26243d;
+  --toastify-color-light: #f5f0f0;
+  --toastify-text-color-light: #26243d;
+  --toastify-text-color-dark: #f5f0f0;
+  --toastify-color-progress-dark: #f5f0f0;
 }
 [data-theme="Dark"] {
   --primary-color: #26243d;

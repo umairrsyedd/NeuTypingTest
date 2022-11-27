@@ -6,16 +6,14 @@ import { resetAnalytics } from "Components/Analytics/AnalyticsSlice";
 import { generateText } from "Components/TextBox/TextboxSlice";
 import { setKeyPressed } from "Components/Keyboard/KeyboardSlice.js";
 import { useEffect } from "react";
+import { resetTest } from "State/GlobalActions";
 
 function Difficulty({
   Difficulty,
   changeDifficulty,
-  resetTimer,
-  generateText,
-  resetAnalytics,
-  setKeyPressed,
   isEnded,
   zenMode,
+  resetTest,
 }) {
   useEffect(() => {}, [Difficulty, isEnded, zenMode]);
 
@@ -31,10 +29,7 @@ function Difficulty({
             }`}
             onClick={() => {
               changeDifficulty("Easy");
-              resetTimer();
-              generateText("Easy");
-              resetAnalytics();
-              setKeyPressed("");
+              resetTest();
             }}
           >
             Easy
@@ -45,10 +40,7 @@ function Difficulty({
             }`}
             onClick={() => {
               changeDifficulty("Medium");
-              resetTimer();
-              generateText("Medium");
-              resetAnalytics();
-              setKeyPressed("");
+              resetTest();
             }}
           >
             Medium
@@ -59,10 +51,7 @@ function Difficulty({
             }`}
             onClick={() => {
               changeDifficulty("Hard");
-              resetTimer();
-              generateText("Hard");
-              resetAnalytics();
-              setKeyPressed("");
+              resetTest();
             }}
           >
             Hard
@@ -83,6 +72,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    resetTest: () => dispatch(resetTest()),
     changeDifficulty: (Difficulty) => dispatch(changeDifficulty(Difficulty)),
     resetTimer: () => dispatch(resetTimer()),
     generateText: (Difficulty) => dispatch(generateText(Difficulty)),

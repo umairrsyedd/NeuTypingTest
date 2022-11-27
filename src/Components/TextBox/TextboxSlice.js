@@ -1,16 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { EasyWords } from "Data/EasyWords";
 import GenerateText, { MakeTypedArray } from "Utils/GenerateText";
-
-// create async thunk to generate text and typed array
-export const generateText = createAsyncThunk(
-  "text/generateText",
-  (Difficulty) => {
-    const text = GenerateText(Difficulty);
-    const typedArray = MakeTypedArray(text);
-    return { text, typedArray };
-  }
-);
+import { highlightCorrectKey } from "Utils/KeyboardHighlight";
+import {
+  incrementCharsTyped,
+  incrementCorrectChars,
+} from "Components/Analytics/AnalyticsSlice.js";
 
 export const TextBoxSlice = createSlice({
   name: "textbox",
@@ -83,6 +78,15 @@ export const TextBoxSlice = createSlice({
     });
   },
 });
+
+export const generateText = createAsyncThunk(
+  "text/generateText",
+  (Difficulty) => {
+    const text = GenerateText(Difficulty);
+    const typedArray = MakeTypedArray(text);
+    return { text, typedArray };
+  }
+);
 
 export const {
   setText,

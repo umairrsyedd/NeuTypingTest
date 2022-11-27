@@ -1,22 +1,10 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import {
-  incrementLetter,
   toggleIsFocused,
   generateText,
-  markTyped,
-  markCorrect,
-  markIncorrect,
   setZenMode,
 } from "Components/TextBox/TextboxSlice.js";
-import {
-  incrementError,
-  incrementErrorPerChar,
-} from "Components/Analytics/AnalyticsSlice.js";
-import {
-  incrementCharsTyped,
-  incrementCorrectChars,
-} from "Components/Analytics/AnalyticsSlice.js";
 import { startTimer, toggleIsActive } from "Components/Timer/TimerSlice.js";
 import Words from "./Words.js";
 import "./TextBox.css";
@@ -28,11 +16,12 @@ import useSound from "use-sound";
 import keySound from "Assets/KeySound.wav";
 import wrongKeySound from "Assets/WrongKeySound.wav";
 import { changeAccuracy } from "Components/Analytics/AnalyticsSlice.js";
-import CapsLock from "Components/CapsLock/CapsLock.js";
+import CapsLock from "./CapsLock/CapsLock.js";
 import {
   highlightCorrectKey,
   highlightIncorrectKey,
 } from "Utils/KeyboardHighlight.js";
+import { keyCorrect, keyIncorrect } from "State/GlobalActions.js";
 const Result = lazy(() => import("Components/Result/Result.js"));
 
 function TextBox({
@@ -50,19 +39,13 @@ function TextBox({
   generateText,
   setKeyPressed,
   setCapsLock,
-  incrementLetter,
-  incrementCharsTyped,
-  incrementCorrectChars,
-  markTyped,
-  markCorrect,
-  markIncorrect,
-  incrementError,
-  incrementErrorPerChar,
   startTimer,
   toggleIsActive,
   toggleIsFocused,
   changeAccuracy,
   setZenMode,
+  keyCorrect,
+  keyIncorrect,
 }) {
   const [playKeySound] = useSound(keySound, { volume: 0.3 });
   const [playWrongKeySound] = useSound(wrongKeySound, { volume: 0.3 });
@@ -70,21 +53,22 @@ function TextBox({
   useEffect(() => {
     generateText(Difficulty);
     setKeyPressed("");
-    // window.addEventListener("keypress", () => {
-    //   document.getElementsByClassName("TextBox")[0].focus();
-    // });
+    window.addEventListener("keypress", () => {
+      document.getElementsByClassName("TextBox")[0].focus();
+    });
   }, [Difficulty, generateText, setKeyPressed]);
 
   const handleKeyPress = (e) => {
+    if (e.shiftKey) {
+      return;
+    }
     setZenMode(true);
     setCursorHidden(true);
     let key = e.key;
     if (isEnded) {
       return;
     }
-    // if (e.shiftKey) {
-    //   return;
-    // }
+
     if (e.getModifierState("CapsLock")) {
       setCapsLock(true);
     } else {
@@ -106,11 +90,7 @@ function TextBox({
     }
     setKeyPressed(key);
     if (key === text[word][letter]) {
-      incrementLetter();
-      incrementCharsTyped();
-      incrementCorrectChars();
-      markTyped({ word, letter });
-      markCorrect({ word, letter });
+      keyCorrect();
       highlightCorrectKey(key);
       if (isPracticeMode) {
         changeAccuracy();
@@ -119,11 +99,7 @@ function TextBox({
         playKeySound();
       }
     } else {
-      incrementError();
-      incrementErrorPerChar(text[word][letter]);
-      incrementCharsTyped();
-      markTyped({ word, letter });
-      markIncorrect({ word, letter });
+      keyIncorrect();
       highlightIncorrectKey(key);
       if (isPracticeMode) {
         changeAccuracy();
@@ -204,19 +180,13 @@ const mapDispatchToProps = (dispatch) => {
     generateText: (Difficulty) => dispatch(generateText(Difficulty)),
     setKeyPressed: (key) => dispatch(setKeyPressed(key)),
     setCapsLock: (isCapsLock) => dispatch(setCapsLock(isCapsLock)),
-    incrementLetter: () => dispatch(incrementLetter()),
-    incrementCharsTyped: () => dispatch(incrementCharsTyped()),
-    incrementCorrectChars: () => dispatch(incrementCorrectChars()),
-    markTyped: (cursor) => dispatch(markTyped(cursor)),
-    markCorrect: (cursor) => dispatch(markCorrect(cursor)),
-    markIncorrect: (cursor) => dispatch(markIncorrect(cursor)),
-    incrementError: () => dispatch(incrementError()),
-    incrementErrorPerChar: (char) => dispatch(incrementErrorPerChar(char)),
     startTimer: () => dispatch(startTimer()),
     toggleIsActive: () => dispatch(toggleIsActive()),
     toggleIsFocused: () => dispatch(toggleIsFocused()),
     changeAccuracy: () => dispatch(changeAccuracy()),
     setZenMode: (isZenMode) => dispatch(setZenMode(isZenMode)),
+    keyCorrect: () => dispatch(keyCorrect()),
+    keyIncorrect: () => dispatch(keyIncorrect()),
   };
 };
 
