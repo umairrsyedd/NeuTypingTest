@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { ReactComponent as KeyboardLight } from "Assets/KeyboardLight.svg";
 import { ReactComponent as KeyboardDark } from "Assets/KeyboardDark.svg";
 import "./Keyboard.css";
 
-export default function Keyboard() {
-  const keyPressed = useSelector((state) => state.keyboard.keyPressed);
-  const DarkUI = useSelector((state) => state.settings.DarkUI);
+function Keyboard({ keyPressed, DarkUI }) {
   useEffect(() => {}, [keyPressed, DarkUI]);
 
   return (
@@ -15,3 +13,12 @@ export default function Keyboard() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    keyPressed: state.keyboard.keyPressed,
+    DarkUI: state.settings.DarkUI,
+  };
+};
+
+export default connect(mapStateToProps)(Keyboard);

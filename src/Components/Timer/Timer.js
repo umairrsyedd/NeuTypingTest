@@ -1,6 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { React, useEffect } from "react";
+import { connect } from "react-redux";
 import { tick } from "Components/Timer/TimerSlice";
 import {
   changeSpeed,
@@ -8,28 +7,39 @@ import {
 } from "Components/Analytics/AnalyticsSlice";
 import "./Timer.css";
 
-export default function Timer() {
-  const dispatch = useDispatch();
-  const IsTestMode = useSelector((state) => state.settings.IsTestMode);
-  const timeLimit = useSelector((state) => state.timer.timeLeft);
-  const isActive = useSelector((state) => state.timer.isActive);
-  const isEnded = useSelector((state) => state.timer.isEnded);
-  const secondsUsed = useSelector((state) => state.timer.secondsUsed);
-  const hasStarted = useSelector((state) => state.timer.hasStarted);
-
-  React.useEffect(() => {
+function Timer({
+  IsTestMode,
+  timeLimit,
+  isActive,
+  isEnded,
+  secondsUsed,
+  hasStarted,
+  tick,
+  changeSpeed,
+  changeAccuracy,
+}) {
+  useEffect(() => {
     if (isActive && !isEnded && hasStarted && IsTestMode) {
-      const timerId = setInterval(function tickChange() {
-        dispatch(tick());
+      const timerId = setInterval(() => {
+        tick();
         if (secondsUsed === 0) {
           return;
         }
-        dispatch(changeSpeed(secondsUsed));
-        dispatch(changeAccuracy());
+        changeSpeed(secondsUsed);
+        changeAccuracy();
       }, 1000);
       return () => clearInterval(timerId);
     }
-  }, [isActive, isEnded, secondsUsed, hasStarted, IsTestMode, dispatch]);
+  }, [
+    isActive,
+    isEnded,
+    secondsUsed,
+    hasStarted,
+    IsTestMode,
+    tick,
+    changeSpeed,
+    changeAccuracy,
+  ]);
 
   return (
     <div className="Timer">
@@ -57,3 +67,24 @@ export default function Timer() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    IsTestMode: state.settings.IsTestMode,
+    timeLimit: state.timer.timeLeft,
+    isActive: state.timer.isActive,
+    isEnded: state.timer.isEnded,
+    secondsUsed: state.timer.secondsUsed,
+    hasStarted: state.timer.hasStarted,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    tick: () => dispatch(tick()),
+    changeSpeed: (secondsUsed) => dispatch(changeSpeed(secondsUsed)),
+    changeAccuracy: () => dispatch(changeAccuracy()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);

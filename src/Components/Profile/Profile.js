@@ -1,16 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
 import Profile__Picture from "Assets/Profile-Picture.webp";
 import "./Profile.css";
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 import { FaAngellist } from "react-icons/fa";
 import { SiHashnode } from "react-icons/si";
 import ReactTooltip from "react-tooltip";
-import { useSelector } from "react-redux";
 
-export default function Profile() {
-  const isDarkMode = useSelector((state) => state.settings.DarkUI);
-  const isEnded = useSelector((state) => state.timer.isEnded);
-  const zenMode = useSelector((state) => state.textbox.zenMode);
+function Profile({ DarkUI, isEnded, zenMode }) {
   return (
     <>
       {zenMode && !isEnded ? (
@@ -57,7 +54,7 @@ export default function Profile() {
                 <i className="LinkedIn">
                   <AiFillLinkedin
                     size="2rem"
-                    color={`${isDarkMode ? "#f5f0f0" : "#26243d"}`}
+                    color={`${DarkUI ? "#f5f0f0" : "#26243d"}`}
                   />
                 </i>
               </a>
@@ -71,7 +68,7 @@ export default function Profile() {
                 <i className="Github">
                   <AiFillGithub
                     size="2rem"
-                    color={`${isDarkMode ? "#f5f0f0" : "#26243d"}`}
+                    color={`${DarkUI ? "#f5f0f0" : "#26243d"}`}
                   />
                 </i>
               </a>
@@ -85,7 +82,7 @@ export default function Profile() {
                 <i className="Angellist">
                   <FaAngellist
                     size="2rem"
-                    color={`${isDarkMode ? "#f5f0f0" : "#26243d"}`}
+                    color={`${DarkUI ? "#f5f0f0" : "#26243d"}`}
                   />
                 </i>
               </a>
@@ -99,7 +96,7 @@ export default function Profile() {
                 <i className="HashNodeJs">
                   <SiHashnode
                     size="2rem"
-                    color={`${isDarkMode ? "#f5f0f0" : "#26243d"}`}
+                    color={`${DarkUI ? "#f5f0f0" : "#26243d"}`}
                   />
                 </i>
               </a>
@@ -113,3 +110,13 @@ export default function Profile() {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    DarkUI: state.settings.DarkUI,
+    isEnded: state.timer.isEnded,
+    zenMode: state.textbox.zenMode,
+  };
+};
+
+export default connect(mapStateToProps)(Profile);

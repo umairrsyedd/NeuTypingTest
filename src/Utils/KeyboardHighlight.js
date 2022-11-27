@@ -47,7 +47,7 @@ export function highlightIncorrectKey(keyPressed) {
           .classList.remove("highlight--correct--text");
       }, 100);
     }
-  } catch {
-    console.log("error");
+  } catch (e) {
+    console.log(e);
   }
 }

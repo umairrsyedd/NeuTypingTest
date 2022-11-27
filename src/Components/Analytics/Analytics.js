@@ -1,12 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import Accuracy from "./Accuracy";
 import Speed from "./Speed";
 import Errors from "./Errors";
-import { useSelector } from "react-redux";
-import "./Analytics.css";
 import Timer from "Components/Timer/Timer";
-export default function Analytics() {
-  const isTestMode = useSelector((state) => state.settings.IsTestMode);
+import "./Analytics.css";
+
+function Analytics({ isTestMode }) {
   return (
     <>
       <div
@@ -24,3 +24,11 @@ export default function Analytics() {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    isTestMode: state.settings.IsTestMode,
+  };
+};
+
+export default connect(mapStateToProps)(Analytics);
