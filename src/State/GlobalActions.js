@@ -3,6 +3,7 @@ import {
   markCorrect,
   markTyped,
   markIncorrect,
+  toggleIsFocused,
 } from "Components/TextBox/TextboxSlice";
 import {
   incrementCharsTyped,
@@ -51,6 +52,7 @@ export const resetTest = () => {
     dispatch(generateText(difficulty));
     dispatch(setKeyPressed(""));
     dispatch(toggleIsActive());
+    dispatch(toggleIsFocused());
     dispatch(stopTimer());
   };
 };
