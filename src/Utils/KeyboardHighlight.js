@@ -1,6 +1,6 @@
 export function highlightCorrectKey(keyPressed) {
   let key = keyPressed.toUpperCase();
-  if (key === "␣") {
+  if (key === " ") {
     key = "Space";
   }
   try {
@@ -27,7 +27,7 @@ export function highlightCorrectKey(keyPressed) {
 
 export function highlightIncorrectKey(keyPressed) {
   let key = keyPressed.toUpperCase();
-  if (key === "␣") {
+  if (key === " ") {
     key = "Space";
   }
   try {

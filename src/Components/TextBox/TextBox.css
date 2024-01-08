@@ -5,7 +5,7 @@
     "Helvetica Neue", monospace;
   word-wrap: break-word;
   width: 756px;
-  min-height: 160px;
+  min-height: 150px;
 }
 
 .TextBox:focus {
@@ -19,7 +19,7 @@
 }
 
 .Word {
-  white-space: nowrap;
+word-wrap: break-word;
 }
 .Letter {
   opacity: 0.5;

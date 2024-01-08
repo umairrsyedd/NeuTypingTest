@@ -28,7 +28,6 @@ function TextBox({
   word,
   letter,
   text,
-  cursor,
   isActive,
   isEnded,
   isFocused,
@@ -84,9 +83,6 @@ function TextBox({
         setKeyPressed("");
         return;
       }
-    }
-    if (key === " ") {
-      key = "␣";
     }
     setKeyPressed(key);
     if (key === text[word][letter]) {
