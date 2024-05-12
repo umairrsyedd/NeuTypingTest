@@ -58,9 +58,6 @@ function TextBox({
   }, [Difficulty, generateText, setKeyPressed]);
 
   const handleKeyPress = (e) => {
-    if (e.shiftKey) {
-      return;
-    }
     setZenMode(true);
     setCursorHidden(true);
     let key = e.key;
