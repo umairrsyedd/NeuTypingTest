@@ -1,5 +1,7 @@
 # Getting Started with Neu Typing Test
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2efaadc0-9a1f-4490-97ac-9a911a760a47/deploy-status)](https://app.netlify.com/sites/neutypingtest/deploys)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## About the Project
