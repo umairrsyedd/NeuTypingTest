@@ -51,3 +51,39 @@ export function highlightIncorrectKey(keyPressed) {
     console.log(e);
   }
 }
+
+export function highlightSpecialKey(keyPressed) {
+  let key = keyPressed.toUpperCase();
+  console.log("Reached Special " + key);
+  try {
+    if (key === "CAPSLOCK") {
+      document
+        .querySelector("#Box_Caps>rect")
+        .classList.add("highlight--special");
+    } else if (key === "SHIFT") {
+      document
+        .querySelector("#Box_Shift_L>rect")
+        .classList.add("highlight--special");
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export function removeHighlightSpecialKey(keyPressed) {
+  let key = keyPressed.toUpperCase();
+
+  try {
+    if (key === "CAPSLOCK") {
+      document
+        .querySelector("#Box_Caps>rect")
+        .classList.remove("highlight--special");
+    } else if (key === "SHIFT") {
+      document
+        .querySelector("#Box_Shift_L>rect")
+        .classList.remove("highlight--special");
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}

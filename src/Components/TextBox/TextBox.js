@@ -16,10 +16,11 @@ import useSound from "use-sound";
 import keySound from "Assets/KeySound.wav";
 import wrongKeySound from "Assets/WrongKeySound.wav";
 import { changeAccuracy } from "Components/Analytics/AnalyticsSlice.js";
-import CapsLock from "./CapsLock/CapsLock.js";
 import {
   highlightCorrectKey,
   highlightIncorrectKey,
+  highlightSpecialKey,
+  removeHighlightSpecialKey,
 } from "Utils/KeyboardHighlight.js";
 import { keyCorrect, keyIncorrect } from "State/GlobalActions.js";
 const Result = lazy(() => import("Components/Result/Result.js"));
@@ -66,9 +67,9 @@ function TextBox({
     }
 
     if (e.getModifierState("CapsLock")) {
-      setCapsLock(true);
-    } else {
-      setCapsLock(false);
+      highlightSpecialKey("CapsLock");
+    } else if (e.getModifierState("Shift")) {
+      highlightSpecialKey("Shift");
     }
     if (!isActive || !hasStarted) {
       startTimer();
@@ -103,18 +104,27 @@ function TextBox({
     }
   };
 
+  const handleKeyUp = (e) => {
+    if (e.key === "CapsLock") {
+      removeHighlightSpecialKey("CapsLock");
+    } else if (e.key === "Shift") {
+      removeHighlightSpecialKey("Shift");
+    }
+  };
   return (
     <>
       {!isEnded ? (
         <>
-          <CapsLock />
           <div
             className={`Button TextBox ${
               cursorHidden && hasStarted ? "CursorHidden" : ""
             }`}
             tabIndex="0"
-            onKeyPress={(e) => {
+            onKeyDown={(e) => {
               handleKeyPress(e);
+            }}
+            onKeyUp={(e) => {
+              handleKeyUp(e);
             }}
             onBlur={() => {
               toggleIsActive();

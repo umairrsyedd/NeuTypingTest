@@ -12,6 +12,11 @@
   fill: var(--primary-color);
 }
 
+.highlight--special {
+  fill: #7b8cde;
+  animation: type cubic-bezier(0.19, 1, 0.22, 1) 1;
+}
+
 @keyframes type {
   100% {
     fill: #f5f0f0;
