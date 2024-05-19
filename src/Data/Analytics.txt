@@ -1,0 +1,19 @@
+Headers
+{   
+    "authToken" : "jwt12345",
+    "userId" : "abc",
+    "sessionId" : "xyz",
+    "startTime" : "2024-05-18T10:00:00Z",
+}
+
+Body
+{
+    "eventType" : "keyTyped",
+    "isKeyCorrect" : true,
+    "key" : "n",
+    "word" : "India",
+    "previousKey" : "I",
+    "nextKey" : "d",
+    "isCapital" : false,
+    "timeTakenInMs" : "100",
+}
