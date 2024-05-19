@@ -16,6 +16,7 @@ function Modes({
   setKeyPressed,
   IsTestMode,
   IsPracticeMode,
+  changeMode,
 }) {
   return (
     <div className="Settings__Modes">
@@ -70,6 +71,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    changeMode: (mode) => dispatch(changeMode(mode)),
     resetTimer: () => dispatch(resetTimer()),
     generateText: (difficulty) => dispatch(generateText(difficulty)),
     resetAnalytics: () => dispatch(resetAnalytics()),

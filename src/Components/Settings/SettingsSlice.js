@@ -4,6 +4,7 @@ export const SettingsSlice = createSlice({
   name: "settings",
   initialState: {
     IsTestMode: true,
+    IsPracticeMode: false,
     Difficulty: "Easy",
     Muted: false,
     DarkUI: false,
