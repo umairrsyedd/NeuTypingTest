@@ -54,7 +54,7 @@ export function highlightIncorrectKey(keyPressed) {
 
 export function highlightSpecialKey(keyPressed) {
   let key = keyPressed.toUpperCase();
-  console.log("Reached Special " + key);
+
   try {
     if (key === "CAPSLOCK") {
       document
