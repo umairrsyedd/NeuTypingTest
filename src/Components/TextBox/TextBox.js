@@ -1,7 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
 import { connect } from "react-redux";
 import {
-  toggleIsFocused,
+  setFocused,
   generateText,
   setZenMode,
 } from "Components/TextBox/TextboxSlice.js";
@@ -37,7 +37,7 @@ function TextBox({
   setKeyPressed,
   startTimer,
   toggleIsActive,
-  toggleIsFocused,
+  setFocused,
   changeAccuracy,
   setZenMode,
   keyCorrect,
@@ -115,11 +115,11 @@ function TextBox({
           }}
           onBlur={() => {
             toggleIsActive();
-            toggleIsFocused();
+            setFocused(false);
             setZenMode(false);
           }}
           onFocus={() => {
-            toggleIsFocused();
+            setFocused(true);
           }}
           onMouseLeave={() => {
             setCursorHidden(false);
@@ -171,7 +171,7 @@ const mapDispatchToProps = (dispatch) => {
     setKeyPressed: (key) => dispatch(setKeyPressed(key)),
     startTimer: () => dispatch(startTimer()),
     toggleIsActive: () => dispatch(toggleIsActive()),
-    toggleIsFocused: () => dispatch(toggleIsFocused()),
+    setFocused: (isFocused) => dispatch(setFocused(isFocused)),
     changeAccuracy: () => dispatch(changeAccuracy()),
     setZenMode: (isZenMode) => dispatch(setZenMode(isZenMode)),
     keyCorrect: () => dispatch(keyCorrect()),

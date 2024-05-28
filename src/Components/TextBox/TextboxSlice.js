@@ -36,6 +36,9 @@ export const TextBoxSlice = createSlice({
     toggleIsFocused: (state) => {
       state.isFocused = !state.isFocused;
     },
+    setFocused: (state, action) => {
+      state.isFocused = action.payload;
+    },
     markTyped: (state, action) => {
       state.typedArray[action.payload.word][
         action.payload.letter
@@ -93,6 +96,7 @@ export const {
   markTyped,
   markCorrect,
   markIncorrect,
+  setFocused,
   setZenMode,
 } = TextBoxSlice.actions;
 export default TextBoxSlice.reducer;
