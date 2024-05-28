@@ -79,8 +79,8 @@ export function MakeTypedArray(words) {
     typed.push([]);
     for (let j = 0; j < words[i].length; j++) {
       typed[i].push({
-        correct: false,
         untyped: true,
+        correct: false,
         incorrect: false,
       });
     }

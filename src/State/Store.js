@@ -4,7 +4,6 @@ import AnalyticsReducer from "../Components/Analytics/AnalyticsSlice";
 import TextboxReducer from "../Components/TextBox/TextboxSlice";
 import KeyboardReducer from "../Components/Keyboard/KeyboardSlice";
 import TimerReducer from "../Components/Timer/TimerSlice";
-import HomeReducer from "Pages/Home/HomeSlice";
 import thunkMiddleware from "redux-thunk";
 
 const reducer = {
@@ -13,7 +12,6 @@ const reducer = {
   textbox: TextboxReducer,
   keyboard: KeyboardReducer,
   timer: TimerReducer,
-  home: HomeReducer,
 };
 
 export default configureStore({
